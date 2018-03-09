@@ -1,0 +1,32 @@
+var path=require('path')
+
+module.exports={
+  entry:'./src/lib/index.js',
+  output:{
+    path:path.join(__dirname,'./dist'),
+    filename:'vue-tips.js',
+    libraryTarget:'umd',//输出规范，amd\cmd\commonjs
+    library:'VueTips'//输出
+  },
+  module:{
+    rules:[
+      {
+        test:/\.vue$/,
+        loader:'vue-loader',
+        options:{
+          loaders:{
+            scss:'style-loader!css-loader!sass-loader'
+          }
+        }
+      },
+      {
+        test:/\.js$/,
+        loader:'babel-loader',
+        include:path.join(__dirname,'src'),
+        exclude:/node_modules/
+      }
+    ]
+  },
+  plugins:[
+  ]
+}
