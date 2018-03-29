@@ -34,7 +34,7 @@ this.$tips.show()
 - "webpack"
 
 ## Release History
-2018-3-9&&nbsp;&nbsp;&nbsp;&nbsp;v1.0.0&nbsp;&nbsp;&nbsp;&nbsp;init
+2018-3-9&&nbsp;&nbsp;&nbsp;&nbsp;v1.0.0&nbsp;&nbsp;&nbsp;&nbsp;init..
 2018-3-29&&nbsp;&nbsp;&nbsp;&nbsp;v1.0.1&nbsp;&nbsp;&nbsp;&nbsp;init
 
 ## License
