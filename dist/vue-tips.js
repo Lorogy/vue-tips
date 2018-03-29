@@ -197,7 +197,7 @@ exports.default = {
     };
   },
   mounted: function mounted() {
-    this.messages.push(new Date().Format('yyyy-MM-dd hh:mm:ss'));
+    this.messages.push(["", new Date().Format('yyyy-MM-dd hh:mm:ss')]);
   },
 
   methods: {
@@ -205,11 +205,15 @@ exports.default = {
       //this.messages.splice(index,1,this.inputTip)
       //this.$set(this.messages,index,this.inputTip)
       //this.messages.push('小贴士')
-      this.messages.push(new Date().Format('yyyy-MM-dd hh:mm:ss'));
+      this.messages.push(["", new Date().Format('yyyy-MM-dd hh:mm:ss')]);
     },
     closeTip: function closeTip(index) {
-      //this.messages.splice(index,1)
-      this.curIndex = index;
+      this.messages.splice(index, 1);
+      console.log(this.messages);
+    },
+    change: function change(index, e) {
+      this.$set(this.messages, index, [e.target.value, new Date().Format('yyyy-MM-dd hh:mm:ss')]);
+      console.log(this.messages);
     }
   }
 };
@@ -993,43 +997,47 @@ var render = function() {
       "div",
       { staticClass: "tips" },
       _vm._l(_vm.messages, function(item, index) {
-        return _vm.curIndex != index
-          ? _c("div", { staticClass: "tip" }, [
-              _c("div", { staticClass: "h" }, [
-                _c(
-                  "span",
-                  {
-                    staticClass: "l",
-                    on: {
-                      click: function($event) {
-                        _vm.createTip(index)
-                      }
-                    }
-                  },
-                  [_vm._v("+")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticClass: "r",
-                    on: {
-                      click: function($event) {
-                        _vm.closeTip(index)
-                      }
-                    }
-                  },
-                  [_vm._v("x")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("textarea", {
-                attrs: { rows: "10", cols: "20", placeholder: "小贴士" }
-              }),
-              _vm._v(" "),
-              _c("p", { staticClass: "time" }, [_vm._v(_vm._s(item))])
-            ])
-          : _vm._e()
+        return _c("div", { staticClass: "tip" }, [
+          _c("div", { staticClass: "h" }, [
+            _c(
+              "span",
+              {
+                staticClass: "l",
+                on: {
+                  click: function($event) {
+                    _vm.createTip(index)
+                  }
+                }
+              },
+              [_vm._v("+")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "r",
+                on: {
+                  click: function($event) {
+                    _vm.closeTip(index)
+                  }
+                }
+              },
+              [_vm._v("x")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("textarea", {
+            attrs: { rows: "10", cols: "20" },
+            domProps: { value: item[0] },
+            on: {
+              change: function($event) {
+                _vm.change(index, $event)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "time" }, [_vm._v(_vm._s(item[1]))])
+        ])
       })
     )
   ])

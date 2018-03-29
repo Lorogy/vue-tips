@@ -35,6 +35,7 @@ this.$tips.show()
 
 ## Release History
 2018-3-9&&nbsp;&nbsp;&nbsp;&nbsp;v1.0.0&nbsp;&nbsp;&nbsp;&nbsp;init
+2018-3-29&&nbsp;&nbsp;&nbsp;&nbsp;v1.0.1&nbsp;&nbsp;&nbsp;&nbsp;init
 
 ## License
 Copyright (c) 2018 lorogy. Licensed under the ISC license.

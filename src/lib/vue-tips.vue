@@ -1,13 +1,13 @@
 <template>
 <div class="tips-container">
   <div class="tips">
-    <div class="tip" v-for="(item,index) in messages" v-if="curIndex!=index">
+    <div class="tip" v-for="(item,index) in messages">
       <div class="h">
         <span class="l" @click="createTip(index)">+</span>
         <span class="r" @click="closeTip(index)">x</span>
       </div>
-      <textarea rows="10" cols="20" placeholder="小贴士"></textarea>
-      <p class="time">{{item}}</p>
+      <textarea rows="10" cols="20" @change="change(index,$event)" :value="item[0]"></textarea>
+      <p class="time">{{item[1]}}</p>
     </div>
   </div>
 </div>
@@ -112,18 +112,22 @@ export default{
     }
   },
   mounted(){
-    this.messages.push(new Date().Format('yyyy-MM-dd hh:mm:ss'))
+    this.messages.push(["",new Date().Format('yyyy-MM-dd hh:mm:ss')])
   },
   methods:{
     createTip(index){
      //this.messages.splice(index,1,this.inputTip)
      //this.$set(this.messages,index,this.inputTip)
      //this.messages.push('小贴士')
-     this.messages.push(new Date().Format('yyyy-MM-dd hh:mm:ss'))
+     this.messages.push(["",new Date().Format('yyyy-MM-dd hh:mm:ss')])
     },
     closeTip(index){
-      //this.messages.splice(index,1)
-      this.curIndex=index;
+      this.messages.splice(index,1)
+      console.log(this.messages)
+    },
+    change(index,e){
+      this.$set(this.messages,index,[e.target.value,new Date().Format('yyyy-MM-dd hh:mm:ss')])
+      console.log(this.messages)
     }
   }
 }
