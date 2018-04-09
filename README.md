@@ -3,7 +3,7 @@
 > a tips plugin for vue
 
 ## Getting Started
-`npm install vue-tips --save`
+`npm install vue-tips-lorogy --save`
 
 ```
 //first import plugin
